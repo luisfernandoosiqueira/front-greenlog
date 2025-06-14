@@ -1,0 +1,131 @@
+<!-- src/app/pages/itinerario/itinerario.component.html -->
+<div class="relatorios-container">
+  <header class="header">
+    <img src="assets/logo.png" alt="GreenLog Logo" class="logo" />
+    <h1>Gerenciamento de Itinerários</h1>
+    <button class="menu-button" [routerLink]="['/']">Menu</button>
+  </header>
+  
+  <main class="content">
+    <!-- 🔍 Filtro -->
+    <form class="filtro-form" (ngSubmit)="filtrarItinerarios()" #filtroForm="ngForm">
+      <div class="filtro-campos">
+        <label>
+          Placa do Caminhão:
+          <input
+            type="text"
+            [(ngModel)]="filtro.placa"
+            name="placa"
+            placeholder="Ex: ABC1234"
+          />
+        </label>
+
+        <label>
+          Data Inicial:
+          <input
+            type="date"
+            [(ngModel)]="filtro.inicio"
+            name="inicio"
+          />
+        </label>
+        
+        <label>
+          Data Final:
+          <input
+            type="date"
+            [(ngModel)]="filtro.fim"
+            name="fim"
+          />
+        </label>        
+
+        <label>
+          Tipo de Resíduo:
+          <select [(ngModel)]="filtro.tipoResiduo" name="tipoResiduo">
+            <option value="">Todos</option>
+            <option *ngFor="let tipo of tiposResiduo" [value]="tipo">
+              {{ tipo }}
+            </option>
+          </select>
+        </label>
+
+        <label>
+          Bairro (origem ou destino):
+          <select [(ngModel)]="filtro.bairro" name="bairro">
+            <option [ngValue]="null">Todos</option>
+            <option *ngFor="let bairro of bairros" [ngValue]="bairro">
+              {{ bairro.nomeBairro }}
+            </option>
+          </select>
+        </label>
+
+        <button type="submit" class="btn btn-success">Filtrar</button>
+        <button type="button" class="btn btn-secondary" (click)="limparFiltro()">
+          Limpar
+        </button>
+        <button type="button" class="btn btn-primary" (click)="adicionar()">
+          Novo Itinerário
+        </button>
+      </div>
+    </form>
+
+    <!-- Estado de carregamento -->
+    <div *ngIf="loading" class="status-message">
+      Carregando itinerários...
+    </div>
+
+    <!-- Nenhum resultado -->
+    <div *ngIf="!loading && itinerarios.length === 0" class="status-message">
+      Nenhum itinerário encontrado.
+    </div>
+
+    <!-- Tabela de resultados -->
+    <section *ngIf="!loading && itinerarios.length > 0" class="table-container">
+      <table class="itinerario-table">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Data de Agendamento</th>
+            <th>Distância Total (km)</th>
+            <th>Nome da Rota</th>
+            <th>Origem</th>
+            <th>Destino</th>
+            <th>Tipo de Resíduo</th>
+            <th>Data de Criação</th>
+            <th>Placa do Caminhão</th>
+            <th>Ações</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let it of itinerarios">
+            <td>{{ it.id }}</td>
+            <td>{{ it.dataAgendamento | date: 'dd/MM/yyyy' }}</td>
+            <td>{{ it.rota.pesoTotal }} kg</td>
+            <td>{{ it.rota.nome }}</td>
+            <td>{{ it.rota.origem?.nomeBairro }}</td>
+            <td>{{ it.rota.destino?.nomeBairro }}</td>
+            <td>{{ it.rota.tipoResiduo }}</td>
+            <td>{{ it.rota.dataCriacao | date: 'dd/MM/yyyy' }}</td>
+            <td>{{ it.rota.caminhao?.placa }}</td>
+            <td>
+              <button
+                class="btn btn-secondary btn-sm"
+                (click)="editar(it.id!)"
+              >
+                Editar
+              </button>
+              <button
+                class="btn btn-danger btn-sm"
+                (click)="excluir(it.id!)"
+                style="margin-left: 4px;"
+              >
+                Excluir
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+  </main>
+
+  <app-footer></app-footer>
+</div>

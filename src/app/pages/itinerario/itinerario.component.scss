@@ -1,0 +1,202 @@
+/* src/app/pages/itinerario/itinerario.component.scss */
+
+.relatorios-container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+
+  .header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f2fcf4;
+    box-shadow: 0 4px 4px rgba(0, 48, 0, 0.1);
+    height: 100px;
+
+    .logo {
+      width: 100px;
+      margin: 0 70px;
+    }
+
+    h1 {
+      font-size: 22px;
+      width: 100%;
+      text-align: center;
+    }
+
+    .menu-button {
+      margin: 0 20px;
+      width: 200px;
+      height: 40px;
+      border: none;
+      border-radius: 4px;
+      background-color: #0f6d3a;
+      color: white;
+      font-size: 14px;
+      font-weight: bold;
+      letter-spacing: 1px;
+      cursor: pointer;
+
+      &:hover {
+        background-color: #005928;
+      }
+    }
+  }
+
+  .content {
+    padding: 40px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    flex-grow: 1;
+    align-content: start;
+
+    .status-message {
+      text-align: center;
+      font-size: 21px;
+      color: #555;
+      margin: 32px 0;
+      font-style: italic;
+    }
+
+    .filtro-form {
+      margin-bottom: 40px;
+      width: 100%;
+
+      .filtro-campos {
+        display: flex;
+        flex-wrap: nowrap;
+        align-items: flex-end;
+        justify-content: space-around;
+
+        label {
+          display: flex;
+          flex-direction: column;
+          font-weight: 600;
+          font-size: 14px;
+          min-width: 160px;
+
+          input,
+          select {
+            margin-top: 5px;
+            padding: 4px;
+            height: 40px;
+            border: 1.5px solid #ccc;
+            border-radius: 4px;
+            font-size: 16px;
+            width: 280px;
+
+            &:focus {
+              border-color: #2e7d32;
+              outline: none;
+              box-shadow: 0 0 5px rgba(46, 125, 50, 0.5);
+            }
+          }
+        }
+
+        button {
+          height: 40px;
+          width: 100px;
+          border-radius: 4px;
+          font-weight: 600;
+          border: none;
+          cursor: pointer;
+          transition: background-color 0.3s ease;
+          align-self: flex-end;
+
+          &:first-of-type {
+            background-color: #2e7d32;
+            color: #fff;
+            &:hover {
+              background-color: #1b5e20;
+            }
+          }
+
+          &:nth-of-type(2) {
+            background-color: #ccc;
+            color: #333;
+            &:hover {
+              background-color: #aaa;
+            }
+          }
+
+          &:last-of-type {
+            background-color: #0f6d3a;
+            color: #fff;
+            &:hover {
+              background-color: #005928;
+            }
+          }
+        }
+      }
+    }
+
+    .table-container {
+      overflow-x: auto;
+
+      .itinerario-table {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 15px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        border-radius: 8px;
+        overflow: hidden;
+
+        th,
+        td {
+          border-bottom: 1px solid #ddd;
+          padding: 12px 16px;
+          text-align: left;
+        }
+
+        th {
+          background-color: #e8f5e9;
+          color: #2e7d32;
+          font-weight: 700;
+          text-transform: uppercase;
+          letter-spacing: 0.05em;
+        }
+
+        tr:nth-child(even) {
+          background-color: #f9fbe7;
+        }
+
+        tr:hover {
+          background-color: #dcedc8;
+        }
+
+        td:last-child {
+          display: flex;
+          gap: 8px;
+
+          button {
+            padding: 4px 8px;
+            font-size: 14px;
+            border-radius: 4px;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+
+            &.btn-secondary {
+              background-color: #6c757d;
+              color: #fff;
+
+              &:hover {
+                background-color: #5a6268;
+              }
+            }
+
+            &.btn-danger {
+              background-color: #dc3545;
+              color: #fff;
+
+              &:hover {
+                background-color: #c82333;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

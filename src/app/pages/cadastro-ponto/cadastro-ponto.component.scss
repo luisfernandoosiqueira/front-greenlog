@@ -1,0 +1,115 @@
+.cadastro-container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #f2fcf4;
+  box-shadow: 0 4px 4px rgba(0, 48, 0, 0.1);
+  height: 100px;
+
+  .logo {
+    width: 100px;
+    margin: 0 70px;
+  }
+
+  h1 {
+    font-size: 22px;
+    width: 100%;
+    text-align: center;
+  }
+
+  .menu-button {
+    margin: 0 20px;
+    width: 200px;
+    height: 40px;
+    border: none;
+    border-radius: 4px;
+    background-color: #0f6d3a;
+    color: white;
+    font-size: 14px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    cursor: pointer;
+
+    &:hover {
+      background-color: #005928;
+    }
+  }
+}
+
+.main-content {
+  padding: 50px;
+  flex-grow: 1;
+
+  form {
+    display: flex;
+    flex-direction: column;
+    max-width: 800px;
+    margin: 0 auto;
+    background-color: #f2fcf4;
+    padding: 24px;
+    border: 1px solid #9eb0a2;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0, 48, 0, 0.1);
+
+    label {
+      font-size: 16px;
+      margin-bottom: 8px;
+      font-weight: bold;
+    }
+
+    input, select {
+      margin-bottom: 16px;
+      padding: 8px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 16px;
+    }
+
+    .checkboxes {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      margin-bottom: 16px;
+
+      label {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+    }
+
+    button {
+      width: 120px;
+      height: 40px;
+      background-color: #28a745;
+      color: #fff;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      margin: 8px 8px 0 0;
+
+      &:hover {
+        background-color: #218838;
+      }
+
+      &[type="button"] {
+        background-color: #6c757d;
+
+        &:hover {
+          background-color: #5a6268;
+        }
+      }
+
+      &:disabled {
+        background-color: #cccccc;
+        cursor: not-allowed;
+      }
+    }
+  }
+}

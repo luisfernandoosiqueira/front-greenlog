@@ -1,0 +1,59 @@
+.login-container {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-image: url('/assets/background.png');
+    background-size: cover;         // Faz a imagem cobrir a tela sem distorcer
+    background-repeat: no-repeat;   // Impede que a imagem se repita
+    background-position: center;    // Centraliza a imagem na tela
+  
+    .logo {
+      width: 180px;
+      margin-bottom: 30px;
+    }
+  
+    .login-box {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      padding: 30px;
+      background-color: #f2fcf4;
+      border-radius: 12px;
+      box-shadow: 0 4px 20px #0030005b;
+      min-width: 500px;
+  
+      input {
+        padding: 10px;
+        border-radius: 6px;
+        border: 2px solid #9eb0a2;
+        font-size: 16px;
+        outline: none;
+        transition: border-color 0.3s ease;
+  
+        &.error {
+          border-color: red;
+        }
+      }
+  
+      .error-message {
+        height: 20px;
+        color: red;
+        font-size: 14px;
+        text-align: center;
+      }
+  
+      button {
+        padding: 10px;
+        background-color: #0f6d3a;
+        color: white;
+        font-weight: bold;
+        font-size: 16px;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+      }
+    }
+  }
+  

@@ -1,0 +1,21 @@
+/* Reset global */
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: "Roboto", sans-serif;
+}
+
+/* ↑ Seu reset existente ↑ */
+
+/* ↓ Overrides do ngx-toastr ↓ */
+.toast {
+  min-width: 400px !important;    /* largura mínima */
+  max-width: 800px !important;    /* largura máxima */
+  padding: 20px !important;       /* espaçamento interno */
+  font-size: 1.1rem !important;    /* tamanho da fonte */
+}
+
+.toast-success .toast-title {
+  font-size: 1.3rem !important;    /* título maior para toasts de sucesso */
+}

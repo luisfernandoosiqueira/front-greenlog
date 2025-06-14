@@ -1,0 +1,146 @@
+.motorista-container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+
+  .header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f2fcf4;
+    box-shadow: 0 4px 4px rgba(0, 48, 0, 0.1);
+    height: 100px;
+
+    .logo {
+      width: 100px;
+      margin: 0 70px;
+    }
+
+    h1 {
+      font-size: 22px;
+      width: 100%;
+      text-align: center;
+    }
+
+    .menu-button {
+      margin: 0 20px;
+      width: 200px;
+      height: 40px;
+      border: none;
+      border-radius: 4px;
+      background-color: #0f6d3a;
+      color: white;
+      font-size: 14px;
+      font-weight: bold;
+      letter-spacing: 1px;
+      cursor: pointer;
+
+      &:hover {
+        background-color: #005928;
+      }
+    }
+  }
+
+  .main-content {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 40px;
+    flex-grow: 1;
+    align-content: start;
+
+    h2 {
+      width: 1440px;
+      height: 50px;
+      align-content: center;
+      margin-bottom: 20px;
+    }
+
+    .grid {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      gap: 16px;
+      margin-bottom: 32px;
+
+      .box {
+        max-width: 1440px;
+        width: 100%;
+        height: 100px;
+        border: 1px solid #9eb0a2;
+        border-radius: 8px;
+        padding: 10px;
+        box-shadow: 0 4px 6px rgba(0, 48, 0, 0.1);
+        background: #f2fcf4;
+        display: flex;
+        align-items: center;
+        justify-content: start;
+        
+        .icone_motorista{
+          width: 40px;
+        }
+
+        p {
+          margin: 0;
+          padding-top: 6px;
+          margin: 0 20px;
+          font-size: 16px;
+        }
+
+        .info {
+          display: flex;
+          flex-direction: column;
+          width: 100%;
+        }
+
+        button {
+          width: 100px;
+          height: 28px;
+          border: none;
+          border-radius: 4px;
+          cursor: pointer;
+          margin-left: 20px;
+        }
+
+        button:not(.excluir) {
+          background-color: #007bff;
+          color: #fff;
+
+          &:hover {
+            background-color: #0056b3;
+          }
+        }
+
+        button.excluir {
+          background-color: #dc3545;
+          color: white;
+
+          &:hover {
+            background-color: #b52a37;
+          }
+        }
+      }
+    }
+
+    .box-button{
+      width: 1440px;
+
+      > button {
+        width: 300px;
+        height: 40px;
+        background-color: #0f6d3a;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 16px;
+  
+        &:hover {
+          background-color: #005928;
+        }
+      }
+    }
+  }
+}

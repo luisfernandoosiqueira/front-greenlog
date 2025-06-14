@@ -1,0 +1,26 @@
+<div class="motorista-container">
+  <header class="header">
+    <img src="assets/logo.png" alt="eggGestor Logo" class="logo" />
+    <h1>Gerenciamento de Motoristas</h1>
+    <button class="menu-button" [routerLink]="['/']">Menu</button>
+  </header>
+  <main class="main-content">
+    <h2>Lista de Motoristas</h2>
+    <div class="grid">
+      <div class="box" *ngFor="let m of motoristas">
+        <img src="assets/motorista.png" alt="icone_motorista" class="icone_motorista" />
+        <div class="info">
+          <p><strong>CPF:</strong> {{ formatCpf(m.cpf) }}</p>
+          <p><strong>Nome:</strong> {{ m.nome }}</p>
+          <p><strong>Idade:</strong> {{ calcularIdade(m.dataNascimento) }} anos</p>
+        </div>
+        <button [routerLink]="['/motoristas/editar', m.cpf]">Editar</button>
+        <button class="excluir" (click)="excluir(m.cpf)">Excluir</button>
+      </div>
+    </div>
+    <div class="box-button">
+      <button [routerLink]="['/motoristas/novo']">Adicionar novo motorista</button>
+    </div>
+  </main>
+  <app-footer />
+</div>

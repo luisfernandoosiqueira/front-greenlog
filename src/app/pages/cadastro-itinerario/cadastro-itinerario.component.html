@@ -1,0 +1,72 @@
+<!-- src/app/pages/cadastro-itinerario/cadastro-itinerario.component.html -->
+
+<div class="cadastro-container">
+  <header class="header">
+    <h1>{{ itinerario.id ? 'Editar Itinerário' : 'Novo Itinerário' }}</h1>
+    <button class="btn btn-link" (click)="cancelar()">Voltar</button>
+  </header>
+
+  <main class="main-content">
+    <form #formIt="ngForm" (ngSubmit)="onSubmit(formIt)" class="form-container">
+
+      <div class="form-group">
+        <label for="rota">Rota</label>
+
+        <!-- Se estivermos editando, mostrar apenas o nome da rota em readonly -->
+        <ng-container *ngIf="itinerario.id; else selectRota">
+          <input
+            id="rota"
+            type="text"
+            class="form-control"
+            [value]="itinerario.rota.nome"
+            readonly
+          />
+        </ng-container>
+
+        <!-- Se for criação, exibir o select -->
+        <ng-template #selectRota>
+          <select
+            id="rota"
+            name="rota"
+            required
+            [(ngModel)]="itinerario.rota"
+            class="form-control">
+            <option [ngValue]="null">Selecione a rota</option>
+            <option *ngFor="let r of rotas" [ngValue]="r">
+              {{ r.nome }} ({{ r.origem?.nomeBairro }} → {{ r.destino?.nomeBairro }})
+            </option>
+          </select>
+        </ng-template>
+      </div>
+
+      <div class="form-group">
+        <label for="dataAgendamento">Data</label>
+        <input
+          id="dataAgendamento"
+          name="dataAgendamento"
+          type="date"
+          required
+          [(ngModel)]="itinerario.dataAgendamento"
+          class="form-control"/>
+      </div>      
+
+      <div class="button-group">
+        <button
+          type="submit"
+          class="btn btn-success"
+          [disabled]="formIt.invalid">
+          {{ itinerario.id ? 'Atualizar' : 'Cadastrar' }}
+        </button>
+        <button
+          type="button"
+          class="btn btn-secondary"
+          (click)="cancelar()"
+          style="margin-left: 8px;">
+          Cancelar
+        </button>
+      </div>
+    </form>
+  </main>
+
+  <app-footer></app-footer>
+</div>

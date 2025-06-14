@@ -1,0 +1,23 @@
+<div class="cadastro-container">
+    <header class="header">
+      <img src="assets/logo.png" alt="eggGestor Logo" class="logo" />
+      <h1>{{ conexaoId ? 'Editar Conexão' : 'Nova Conexão' }}</h1>
+      <button class="menu-button" [routerLink]="['/bairros/editar', bairroId]">Voltar</button>
+    </header>
+    <main class="main-content">
+      <form (ngSubmit)="onSubmit()">
+        <label>Bairro Origem:</label>
+        <input [value]="bairroOrigemNome" disabled />
+        <label>Bairro Destino:</label>
+        <select [(ngModel)]="bairroDestinoId" name="bairroDestinoId" required>
+          <option value="" disabled selected>Selecione...</option>
+          <option *ngFor="let bairro of bairros" [value]="bairro.id">{{ bairro.nomeBairro }}</option>
+        </select>
+        <label>Distância (km):</label>
+        <input type="number" step="0.1" [(ngModel)]="distanciaKm" name="distanciaKm" required />
+        <button type="submit" [disabled]="!isFormValid">Salvar</button>
+        <button type="button" (click)="cancelar()">Cancelar</button>
+      </form>
+    </main>
+    <app-footer />
+  </div>

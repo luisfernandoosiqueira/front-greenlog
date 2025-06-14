@@ -1,0 +1,53 @@
+<div class="cadastro-container">
+  <header class="header">
+    <img src="assets/logo.png" alt="eggGestor Logo" class="logo" />
+    <h1>{{ ponto ? 'Editar Ponto de Coleta' : 'Novo Ponto de Coleta' }}</h1>
+    <button class="menu-button" [routerLink]="['/bairros']">Voltar</button>
+  </header>
+
+  <main class="main-content">
+    <form (ngSubmit)="onSubmit()">
+      <label>Nome:</label>
+      <input [(ngModel)]="nome" name="nome" required />
+
+      <label>Bairro:</label>
+      <select [(ngModel)]="bairroSelecionadoId" name="bairro" required>
+        <option value="" disabled selected>Selecione...</option>
+        <option *ngFor="let b of bairros" [value]="b.id">{{ b.nomeBairro }}</option>
+      </select>
+
+      <label>Responsável:</label>
+      <input [(ngModel)]="responsavel" name="responsavel" />
+
+      <label>Telefone:</label>
+      <input [(ngModel)]="telefoneResponsavel" name="telefone" />
+
+      <label>Email:</label>
+      <input [(ngModel)]="emailResponsavel" name="email" type="email" />
+
+      <label>Endereço:</label>
+      <input [(ngModel)]="endereco" name="endereco" />
+
+      <label>Horário de Funcionamento:</label>
+      <input [(ngModel)]="horarioFuncionamento" name="horario" />
+
+      <label>Tipos de Resíduo Aceitos:</label>
+      <div class="checkboxes">
+        <label *ngFor="let r of tiposResiduo">
+          <input
+            type="checkbox"
+            [value]="r"
+            (change)="toggleResiduo(r, $event)"
+            [checked]="tiposResiduoAceitos.includes(r)"
+          />
+          {{ r }}
+        </label>
+      </div>
+
+      <button type="submit" [disabled]="!isFormValid">Salvar</button>
+      <button type="button" (click)="cancelar()">Cancelar</button>
+    </form>
+  </main>
+
+  <app-footer />
+</div>

@@ -1,0 +1,43 @@
+<div class="cadastro-container">
+  <header class="header">
+    <img src="assets/logo.png" alt="eggGestor Logo" class="logo" />
+    <h1>Editar Bairro</h1>
+    <button class="menu-button" [routerLink]="['/bairros']">Voltar</button>
+  </header>
+  <main class="main-content">
+    <form (ngSubmit)="onSubmit()">
+      <label>Nome do Bairro:</label>
+      <input [(ngModel)]="nomeBairro" name="nomeBairro" required />
+      <button type="submit" [disabled]="!isFormValid">Salvar</button>
+      <button type="button" (click)="cancelar()">Cancelar</button>
+    </form>
+    <div class="conexoes-section">
+      <h2>Conexões com Outros Bairros</h2>
+      <button class="action-button" [routerLink]="['/bairros/editar', bairroId, 'conexoes', 'nova']">
+        Criar Nova Conexão
+      </button>
+      <div *ngIf="conexoes.length; else semConexoes" class="conexoes-list">
+        <div *ngFor="let conexao of conexoes" class="conexao-box">
+          <p><strong>Destino:</strong> {{ conexao.bairroDestino.nomeBairro }}</p>
+          <p><strong>Distância:</strong> {{ conexao.distanciaKm }} km</p>
+          <div class="conexao-actions">
+            <button class="edit-button" [routerLink]="['/bairros/editar', bairroId, 'conexoes', conexao.id]">
+              Editar
+            </button>
+            <button
+              *ngIf="conexao.id"
+              class="excluir-button"
+              (click)="excluirConexao(conexao.id!)"
+            >
+              Excluir
+            </button>
+          </div>
+        </div>
+      </div>
+      <ng-template #semConexoes>
+        <p class="nenhum">Nenhuma conexão cadastrada para este bairro.</p>
+      </ng-template>
+    </div>
+  </main>
+  <app-footer />
+</div>

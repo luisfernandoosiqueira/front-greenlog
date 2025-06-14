@@ -1,0 +1,12 @@
+<div class="login-container">
+  <img src="assets/logo.png" alt="GreenLog Logo" class="logo" />
+
+  <div class="login-box">
+    <input type="text" [(ngModel)]="username" [ngClass]="{ 'error': errorMessage && !username }" placeholder="Nome de usuário"/>
+    <input type="password" [(ngModel)]="password" [ngClass]="{ 'error': errorMessage && !password }"placeholder="Senha"/>
+    <div class="error-message">
+      {{ errorMessage }}
+    </div>
+    <button (click)="login()">Entrar</button>
+  </div>
+</div>

@@ -1,0 +1,57 @@
+<div class="caminhao-container">
+  <header class="header">
+    <img src="assets/logo.png" alt="eggGestor Logo" class="logo" />
+    <h1>Gerenciamento de Rotas</h1>
+    <button class="menu-button" [routerLink]="['/']">Menu</button>
+  </header>
+
+  <main class="main-content">
+    <button class="btn-primary_adicionar" (click)="adicionar()">Adicionar nova rota</button>
+
+    <table class="table" *ngIf="!loading">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Nome</th>
+          <th>Origem</th>
+          <th>Destino</th>
+          <th>Peso Total</th>
+          <th>Tipo Resíduo</th>
+          <th>Caminhão</th>
+          <th>Ações</th>
+        </tr>
+      </thead>
+      <tbody>
+        <ng-container *ngFor="let rota of rotas">
+          <tr *ngIf="rota.id !== undefined" (click)="toggleRow(rota.id)" class="clickable-row">
+            <td>{{ rota.id }}</td>
+            <td>{{ rota.nome }}</td>
+            <td>{{ rota.origem?.nomeBairro }}</td>
+            <td>{{ rota.destino?.nomeBairro }}</td>
+            <td>{{ rota.pesoTotal }} km</td>
+            <td>{{ rota.tipoResiduo }}</td>
+            <td>{{ rota.caminhao?.placa }}</td>
+            <td>
+              <button (click)="editar(rota.id); $event.stopPropagation()">Editar</button>
+              <button class="excluir" (click)="excluir(rota.id); $event.stopPropagation()">Excluir</button>
+            </td>
+          </tr>
+          <tr *ngIf="rota.id !== undefined && expandedRowId === rota.id" class="expanded-row">
+            <td colspan="8">
+              <div class="path-box">
+                <img [src]="getImagemResiduo(rota.tipoResiduo)" alt="Residue Icon" class="path-icon" />
+                <span>{{ getCaminhoFormatado(rota.ruas) }}</span>
+              </div>
+            </td>
+          </tr>
+        </ng-container>
+      </tbody>
+    </table>
+
+    <div *ngIf="loading" class="loading">Carregando...</div>
+  </main>
+
+  <footer class="footer">
+    <app-footer></app-footer>
+  </footer>
+</div>

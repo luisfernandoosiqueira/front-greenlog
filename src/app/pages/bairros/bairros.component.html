@@ -1,0 +1,42 @@
+<div class="bairro-container">
+  <header class="header">
+    <img src="assets/logo.png" alt="eggGestor Logo" class="logo" />
+    <h1>Lista de Bairros</h1>
+    <button class="menu-button" [routerLink]="['/']">Menu</button>
+  </header>
+
+  <main class="main-content">
+    <!-- Botões para criar novo bairro e novo ponto -->
+    <div class="button-container">
+      <button class="action-button" (click)="criarNovoBairro()">Criar Novo Bairro</button>
+      <button class="action-button" (click)="criarNovoPonto()">Criar Novo Ponto</button>
+    </div>
+
+    <div *ngFor="let bairro of bairros" class="bairro-box">
+      <div class="bairro-header">
+        <h2 class="bairro-nome">{{ bairro.nomeBairro }}</h2>
+        <div class="button-box">
+          <button class="edit-button" (click)="editarBairro(bairro.id)">Editar</button>
+          <button class="excluir-button-bairro" (click)="excluirBairro(bairro.id)">Excluir</button>
+        </div>
+      </div>
+
+      <ng-container *ngIf="getPontosPorBairro(bairro.id).length; else nenhum">
+        <div *ngFor="let ponto of getPontosPorBairro(bairro.id)" class="ponto-box">
+          <p><strong>Ponto:</strong> {{ ponto.nome }}</p>
+          <p><strong>Resíduos:</strong> {{ ponto.tiposResiduoAceitos }}</p>
+          <p><strong>Responsável:</strong> {{ ponto.responsavel }}</p>
+          <p><strong>Telefone:</strong> {{ ponto.telefoneResponsavel }}</p>
+          <button class="edit-button-ponto" (click)="editarPonto(ponto.id)">Editar</button>
+          <button class="excluir-button-ponto" (click)="excluirPonto(ponto.id)">Excluir</button>
+        </div>
+      </ng-container>
+
+      <ng-template #nenhum>
+        <p class="nenhum">Nenhum ponto de coleta para este bairro.</p>
+      </ng-template>
+    </div>
+  </main>
+
+  <app-footer />
+</div>

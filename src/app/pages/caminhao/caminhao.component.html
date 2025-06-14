@@ -1,0 +1,26 @@
+<div class="caminhao-container">
+  <header class="header">
+    <img src="assets/logo.png" alt="eggGestor Logo" class="logo" />
+    <h1>Gerenciamento de Caminhões</h1>
+    <button class="menu-button" [routerLink]="['/']">Menu</button>
+  </header>
+  <main class="main-content">
+    <h2 class="titulo">Lista de todos os meus caminhões</h2>
+    <div class="grid">
+      <div class="box" *ngFor="let c of caminhoes">
+        <img src="assets/truck.png" alt="Ícone Caminhão" />
+        <p><strong>Placa:</strong> {{ c.placa }}</p>
+        <p><strong>Motorista:</strong> {{ c.motorista?.nome || 'Sem motorista' }}</p>
+        <p><strong>Resíduo:</strong> {{ c.tipoResiduo }}</p>
+        <div class="botoes">
+          <button [routerLink]="['/caminhoes/editar', c.placa]">Editar</button>
+          <button class="excluir" (click)="excluir(c.placa)">Excluir</button>
+        </div>
+      </div>
+    </div>
+    <div class="adicionar-container">
+      <button class="btn-adicionar" [routerLink]="['/caminhoes/novo']">Adicionar novo caminhão</button>
+    </div>
+  </main>  
+  <app-footer />
+</div>
