@@ -1,7 +1,7 @@
-<div class="cadastro-container">
+<div class="cadastro-container"> 
   <header class="header">
     <img src="assets/logo.png" alt="eggGestor Logo" class="logo" />
-    <h1>Editar Bairro</h1>
+    <h1>{{ bairroId ? 'Editar Bairro' : 'Criar Bairro' }}</h1>
     <button class="menu-button" [routerLink]="['/bairros']">Voltar</button>
   </header>
   <main class="main-content">
