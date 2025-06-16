@@ -22,7 +22,7 @@ export class LoginComponent {
   constructor(
     private authService: AuthService,
     private router: Router,
-    private toastr: ToastrService      // ← injeta ToastrService
+    private toastr: ToastrService
   ) {}
 
   login() {
@@ -30,21 +30,22 @@ export class LoginComponent {
       this.toastr.warning('Por favor, preencha todos os campos.', 'Atenção');
       return;
     }
-  
+
     const dadosLogin = {
       username: this.username,
       password: this.password,
     };
-    
+
     console.log('Enviando login:', dadosLogin);
-  
+
     this.authService.login(dadosLogin).subscribe({
       next: (res) => {
         console.log('Resposta do backend:', res);
         if (res.success) {
           this.toastr.success('Login bem-sucedido!', 'Sucesso');
           this.errorMessage = '';
-          this.router.navigate(['']);
+          // redireciona para a Home após login bem-sucedido
+          this.router.navigate(['/home']);
         } else {
           this.toastr.error('Usuário ou senha inválidos.', 'Erro');
           this.errorMessage = 'Usuário ou senha inválidos';

@@ -17,7 +17,11 @@ import { ItinerarioComponent }          from './pages/itinerario/itinerario.comp
 import { CadastroItinerarioComponent }  from './pages/cadastro-itinerario/cadastro-itinerario.component';
 
 export const routes: Routes = [
-  { path: '',                          component: HomeComponent },
+  // ao acessar '/', redireciona para login
+  { path: '', redirectTo: 'login', pathMatch: 'full' },
+
+  // após autenticar, Home fica em '/home'
+  { path: 'home',                      component: HomeComponent },
 
   // rotas
   { path: 'rotas',                     component: RotasListComponent },
@@ -40,7 +44,7 @@ export const routes: Routes = [
   // bairros e conexões
   { path: 'bairros',                   component: BairrosComponent },
   { path: 'bairros/editar/:id',        component: CadastroBairroComponent },
-  { path: 'bairros/editar/:id/conexoes/nova',      component: CadastroConexaoComponent },
+  { path: 'bairros/editar/:id/conexoes/nova',       component: CadastroConexaoComponent },
   { path: 'bairros/editar/:id/conexoes/:conexaoId', component: CadastroConexaoComponent },
 
   // pontos de coleta
